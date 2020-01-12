@@ -26,7 +26,8 @@ SECRET_KEY = '2+k2kj4v4ba&k$(m&#8ll8r4j*s@i$lxt32sy9&pxx_gin)@@!'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'tikhon.zapto.org'
+    'tikhon.zapto.org',
+    '127.0.0.1'
 ]
 
 

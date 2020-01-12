@@ -80,7 +80,11 @@ def registerp(request):
 def authed(request):
     if request.user.is_authenticated:
         if request.method == 'GET':
-            parms = {'user': request.user.username}
+            user = request.user.username
+            marks = mark.objects.filter(author=request.user)
+
+            parms = {'username': request.user.username,
+                     'user': request.user.first_name, 'marks': marks}
             return render(request, 'authed.html', parms)
     else:
         return redirect('/')
@@ -90,3 +94,23 @@ def logoutp(request):
     if request.method == 'GET':
         logout(request)
     return redirect('/')
+
+
+def addmark(request):
+    if request.user.is_authenticated:
+        if request.method == 'GET':
+            return render(request, 'addmark.html')
+        if request.method == 'POST':
+            sub = request.POST.get('subject', '')
+            mar = request.POST.get('mark', '')
+            des = request.POST.get('description', '')
+
+            Mark = mark()
+            Mark.author = request.user
+            Mark.subject = sub
+            Mark.value = mar
+            Mark.description = des
+            Mark.save()
+            return redirect('/')
+    else:
+        return redirect('/')

@@ -4,6 +4,18 @@
 
 {% block nav %}
 <h1>Мои оценочки</h1>
-<p>Вы вошли, как {{ user }}</p>
+<p>Вы вошли, как {{ user }} ({{ username }})</p>
 <a href="/logout">Выйти</a>
+{% endblock %}
+
+{% block body %}
+<p />
+<a href='addmark/'>
+  <p>Добавить оценку</p>
+</a>
+<p />
+<h3>Мои оценки</h3>
+{% for m in marks %}
+<p>Оценка {{ m.value }}, предмет {{ m.subject }}, дата добавления {{ m.date }} {{ m.description }}</p>
+{% endfor %}
 {% endblock %}

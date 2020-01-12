@@ -7,4 +7,4 @@ class mark(models.Model):
     date = models.DateField(("Date"), default=datetime.date.today)
     subject = models.CharField(max_length=50)
     description = models.TextField()
-    value = models.IntegerField()
+    value = models.CharField(max_length=2)

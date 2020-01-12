@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Добавить оценку {{ user }}{% endblock %}
+
+{% block nav %}
+<h1>Мои оценочки</h1>
+<p>Вы вошли, как {{ user }} ({{ username }})</p>
+<a href="/logout">Выйти</a>
+{% endblock %}
+
+{% block body %}
+<p />
+<form method="POST">
+  {% csrf_token %}
+  <input type="text" name="subject" placeholder="Предмет">
+  <p />
+  <input type="text" placeholder="Оценка 1 - 5" name="mark">
+  <p />
+  <input type="text" placeholder="Описание (необязательно)" name="description">
+  <p />
+  <input type="submit" value="Добавить">
+</form>
+<a href='/'>
+  <p>Отменить</p>
+</a>
+{% endblock %}
