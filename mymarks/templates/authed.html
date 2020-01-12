@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block title %}Главная {{ user }}{% endblock %}
+
+{% block nav %}
+<h1>Мои оценочки</h1>
+<p>Вы вошли, как {{ user }}</p>
+<a href="/logout">Выйти</a>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Регистрация{% endblock %}
+
+{% block nav %}
+<h1>Мои оценочки</h1>
+{% endblock %}
+
+{% block body %}
+<p />
+{% if messages %}
+<ul>
+  {% for message in messages %}
+  {{ message }}
+  {% endfor %}
+</ul>
+{% endif %}
+<p />
+<form method="POST">
+  {% csrf_token %}
+  <input type="text" placeholder="Имя" name="name">
+  <p />
+  <input type="text" name="login" value="{{ username }}" placeholder="Логин">
+  <p />
+  <input type="email" placeholder="Email" name="email">
+  <p />
+  <input type="password" placeholder="Пароль" name="password1">
+  <p />
+  <input type="password" placeholder="Подтверлите пароль" name="password2">
+  <p />
+  <input type="submit" value="Регистрация">
+</form>
+<p></p>
+<p><a href="/login">Вход</a></p>
+{% endblock %}
