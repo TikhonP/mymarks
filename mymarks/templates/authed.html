@@ -3,9 +3,8 @@
 {% block title %}Главная {{ user }}{% endblock %}
 
 {% block nav %}
-<h1>Мои оценочки</h1>
-<p>Вы вошли, как {{ user }} ({{ username }})</p>
-<a href="/logout">Выйти</a>
+<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Вы вошли, как {{ user }} ({{ username }})</a>
+<a class="btn btn-outline-success my-2 my-sm-0" href="/logout">Выйти</a>
 {% endblock %}
 
 {% block body %}

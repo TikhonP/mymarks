@@ -3,14 +3,18 @@
 {% block title %}Главная{% endblock %}
 
 {% block nav %}
-<h1>Мои оценочки</h1>
+<ul class="navbar-nav mr-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="login/">Войти</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="register/">Регистрация</a>
+  </li>
+</ul>
 {% endblock %}
 
 {% block body %}
-<p />
-<p><a href="login/">Войти</a></p>
-<p><a href="register/">Регистрация</a></p>
-<p />
+<p/>
 <p>Всякая билеберда</p>
 <p> ... </p>
 {% endblock %}
