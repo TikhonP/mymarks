@@ -114,3 +114,28 @@ def addmark(request):
             return redirect('/')
     else:
         return redirect('/')
+
+
+def profilep(request):
+    if request.user.is_authenticated:
+        if request.method == 'GET':
+            parms = {'username': request.user.username, 'user': request.user.first_name,
+                     "last_name": request.user.last_name, "email": request.user.email, "last_login": request.user.last_login}
+            return render(request, 'profile.html', parms)
+        elif request.method == 'POST':
+            if 'pdatasubm' in request.POST:
+                LastName = request.POST.get('LastName', '')
+                FirstName = request.POST.get('FirstName', '')
+                username = request.POST.get('username', '')
+                email = request.POST.get('email', '')
+
+                user = request.user
+                user.first_name = FirstName
+                user.last_name = LastName
+                user.email = email
+                user.username = username
+                user.save()
+
+            return redirect('/authed/profile/')
+    else:
+        return redirect('/')

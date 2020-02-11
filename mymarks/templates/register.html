@@ -23,16 +23,23 @@
   <div class="form-group" method="POST">
     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="nameHelp" placeholder="Имя" name="name">
   </div>
-  <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="login" value="{{ username }}" placeholder="Логин">
-  <p />
-  <input type="email" placeholder="Email" name="email">
-  <p />
-  <input type="password" placeholder="Пароль" name="password1">
-  <p />
-  <input type="password" placeholder="Подтверлите пароль" name="password2">
-  <p />
-  <input type="submit" value="Регистрация">
+  <div class="form-group" method="POST">
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="loginHelp" name="login" value="{{ username }}" placeholder="Логин">
+  </div>
+  <div class="form-group" method="POST">
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" name="email">
+  </div>
+  <div class="form-group" method="POST">
+    <input type="password" class="form-control" id="exampleInputEmail1" aria-describedby="passwordHelp" placeholder="Пароль" name="password1">
+  </div>
+  <div class="form-group" method="POST">
+    <input type="password" class="form-control" id="exampleInputEmail1" aria-describedby="confirmPasswordHelp" placeholder="Подтверлите пароль" name="password2">
+  </div>
+  <div class="form-group" method="POST">
+    <input type="submit" class="form-control" id="exampleInputEmail1" aria-describedby="submitHelp" value="Регистрация">
+  </div>
 </form>
 <p></p>
 <p><a href="/login">Вход</a></p>
+<p><a href="/">< назад</a></p>
 {% endblock %}

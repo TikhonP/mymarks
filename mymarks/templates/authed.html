@@ -3,7 +3,14 @@
 {% block title %}Главная {{ user }}{% endblock %}
 
 {% block nav %}
-<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Вы вошли, как {{ user }} ({{ username }})</a>
+<ul class="navbar-nav mr-auto">
+  <li class="nav-item">
+    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Вы вошли, как {{ user }} ({{ username }})</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="profile/">Профиль</a>
+  </li>
+</ul>
 <a class="btn btn-outline-success my-2 my-sm-0" href="/logout">Выйти</a>
 {% endblock %}
 
