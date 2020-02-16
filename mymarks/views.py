@@ -5,6 +5,9 @@ from mymarks.models import mark, UserMeta
 from django.contrib import messages
 
 
+subjects = ['Математика', 'Русский', 'Химия']
+
+
 def main(request):
     if request.method == 'GET':
         if request.user.is_authenticated:
@@ -145,11 +148,34 @@ def subjectsp(request):
     if request.user.is_authenticated:
         if request.method == 'GET':
             is_first = bool(UserMeta.objects.filter(user=request.user))
-            parms = {'username': request.user.username, 'user': request.user.first_name, 'is_first': is_first}
+            parms = {'username': request.user.username,
+                     'user': request.user.first_name, 'is_first': is_first}
             return render(request, 'subjects.html', parms)
     else:
         return redirect('/')
 
 
 def subjfirstsetp(request):
-    pass
+    global subjects
+    if request.user.is_authenticated:
+        if request.method == 'GET':
+            step = bool(int(request.GET.get('step')))
+            params = {'username': request.user.username,
+                      'user': request.user.first_name, 'step': step, 'subjects': subjects}
+            if step:
+                d = {}
+                for s in subjects:
+                    d[s] = request.GET.get(s)
+                params['subjects'] = d
+            return render(request, 'subjectsfirst.html', params)
+        elif request.method == 'POST':
+            step = bool(int(request.GET.get('step')))
+            if not step:
+                vars = '?'
+                for s in subjects:
+                    vars = vars + s + '=' + request.POST.get(s, '') + '&'
+                return redirect('/authed/profile/subjects/firstset' + vars + 'step=1')
+            elif step:
+                pass
+    else:
+        return redirect('/')

@@ -14,10 +14,9 @@
 {% block body %}
 <h1>Настройка предметов</h1>
 <p></p>
-{% if is_first %}
+{% if not is_first %}
 <p>Вы не настраивали предметы</p>
-<a href="firstset/"><button type="button" class="btn btn-primary btn-lg btn-block">Первичная Настройка</button></a>
-
+<a href="firstset?step=0"><button type="button" class="btn btn-primary btn-lg btn-block">Первичная Настройка</button></a>
 {% else %}
 
 {% endif %}

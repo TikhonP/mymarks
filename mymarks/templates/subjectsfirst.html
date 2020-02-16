@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Предметы | {{ user }}{% endblock %}
+
+{% block nav %}
+<ul class="navbar-nav mr-auto">
+  <li class="nav-item">
+    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Вы вошли, как {{ user }} ({{ username }})</a>
+  </li>
+</ul>
+<a class="btn btn-outline-success my-2 my-sm-0" href="/logout">Выйти</a>
+{% endblock %}
+
+{% block body %}
+<h1>Настройка предметов</h1>
+<p></p>
+{% if not step %}
+<p>Выберите предметы, за которыми вы бы хотели следить</p>
+<form method="post" name="stepone">
+  {% csrf_token %}
+  {% for obj in subjects %}
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">{{ obj }}</span>
+    </div>
+    <select class="custom-select" id="inputGroupSelect04" name="{{ obj }}" type="text">
+      <option value="0" selected>Нет</option>
+      <option value="1">Да</option>
+    </select>
+      {% endfor %}
+  </div>
+  <div class="input-group-append">
+    <input name="stepone" type="submit" class="btn btn-outline-secondary" type="button" value="Сохранить"></input>
+  </div>
+</form>
+{% else %}
+<p>Введите желаемы бал</p>
+<form name='steptwo'>
+  {% csrf_token %}
+  {% for s in subjects %}
+  {% if subjects.s %}
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">{{ s }}</span>
+    </div>
+    <input name="username" type="text" class="form-control" placeholder="от 1 до 5" aria-label="Имя пользователя" aria-describedby="basic-addon1">
+  </div>
+  {% endif %}
+  {% endfor %}
+</form>
+{% endif %}
+<a href="/authed/profile/subjects/">Отмена</a>
+{% endblock %}
