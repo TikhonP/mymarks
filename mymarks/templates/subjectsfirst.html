@@ -19,7 +19,6 @@
 <form method="post" name="stepone">
   {% csrf_token %}
   {% for obj in subjects %}
-  <div class="input-group">
     <div class="input-group-prepend">
       <span class="input-group-text">{{ obj }}</span>
     </div>
@@ -28,25 +27,29 @@
       <option value="1">Да</option>
     </select>
       {% endfor %}
-  </div>
   <div class="input-group-append">
-    <input name="stepone" type="submit" class="btn btn-outline-secondary" type="button" value="Сохранить"></input>
+    <input name="stepone" type="submit" class="btn btn-outline-secondary" type="button" value="Далее"></input>
   </div>
+  <input type="hidden" name="step" value="0"/>
 </form>
 {% else %}
-<p>Введите желаемы бал</p>
-<form name='steptwo'>
+<p>Введите желаемый бал</p>
+<form method="post" name="steptwo">
   {% csrf_token %}
-  {% for s in subjects %}
-  {% if subjects.s %}
+  {% for s, o in subjects.items %}
+  {% if o %}
   <div class="input-group mb-3">
     <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">{{ s }}</span>
     </div>
-    <input name="username" type="text" class="form-control" placeholder="от 1 до 5" aria-label="Имя пользователя" aria-describedby="basic-addon1">
+    <input name="{{ s }}" type="text" class="form-control" placeholder="от 1 до 5" aria-label="Имя пользователя" aria-describedby="basic-addon1">
   </div>
   {% endif %}
   {% endfor %}
+  <div class="input-group-append">
+    <input name="stepone" type="submit" class="btn btn-outline-secondary" type="button" value="Сохранить"></input>
+  </div>
+  <input type="hidden" name="step" value="1"/>
 </form>
 {% endif %}
 <a href="/authed/profile/subjects/">Отмена</a>

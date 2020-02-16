@@ -18,6 +18,23 @@
 <p>Вы не настраивали предметы</p>
 <a href="firstset?step=0"><button type="button" class="btn btn-primary btn-lg btn-block">Первичная Настройка</button></a>
 {% else %}
+<form method="post" name="steptwo">
+  {% csrf_token %}
+  {% for s, o in subjects.items %}
+  {% if o %}
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">{{ s }}</span>
+    </div>
+    <input name="{{ s }}" type="text" class="form-control" placeholder="от 1 до 5" aria-label="Имя пользователя" aria-describedby="basic-addon1">
+  </div>
+  {% endif %}
+  {% endfor %}
+  <div class="input-group-append">
+    <input name="stepone" type="submit" class="btn btn-outline-secondary" type="button" value="Сохранить"></input>
+  </div>
+  <input type="hidden" name="step" value="1"/>
+</form>
 
 {% endif %}
 <p></p>

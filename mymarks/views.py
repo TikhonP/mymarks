@@ -150,6 +150,8 @@ def subjectsp(request):
             is_first = bool(UserMeta.objects.filter(user=request.user))
             parms = {'username': request.user.username,
                      'user': request.user.first_name, 'is_first': is_first}
+            if not is_first:
+                um = UserMeta.objects.get(user=request.user)
             return render(request, 'subjects.html', parms)
     else:
         return redirect('/')
@@ -165,17 +167,26 @@ def subjfirstsetp(request):
             if step:
                 d = {}
                 for s in subjects:
-                    d[s] = request.GET.get(s)
+                    d[s] = bool(int(request.GET.get(s)))
                 params['subjects'] = d
             return render(request, 'subjectsfirst.html', params)
         elif request.method == 'POST':
-            step = bool(int(request.GET.get('step')))
+            step = bool(int(request.POST.get("step")))
             if not step:
                 vars = '?'
                 for s in subjects:
                     vars = vars + s + '=' + request.POST.get(s, '') + '&'
                 return redirect('/authed/profile/subjects/firstset' + vars + 'step=1')
             elif step:
-                pass
+                usermeta = UserMeta()
+                usermeta.user = request.user
+                usermeta.math = int(request.POST.get('Математика')) if request.POST.get(
+                    'Математика', '-') != '-' else -1
+                usermeta.russian = int(request.POST.get('русский')) if request.POST.get(
+                    'русский', '-') != '-' else -1
+                usermeta.chemistry = int(request.POST.get(
+                    'химия')) if request.POST.get('химия', '-') != '-' else -1
+                usermeta.save()
+                return redirect('/authed/profile/subjects/')
     else:
         return redirect('/')
