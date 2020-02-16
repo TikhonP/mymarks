@@ -9,4 +9,6 @@ urlpatterns = [
     path('logout/', views.logoutp, name='logoutp'),
     path('authed/addmark/', views.addmark, name='addmark'),
     path('authed/profile/', views.profilep, name='profilep'),
+    path('authed/profile/subjects/', views.subjectsp, name='subjectsp'),
+    path('authed/profile/subjects/firstset/', views.subjfirstsetp, name='subjfirstsetp'),
 ]

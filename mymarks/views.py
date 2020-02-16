@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-from mymarks.models import mark
+from mymarks.models import mark, UserMeta
 from django.contrib import messages
 
 
@@ -139,3 +139,17 @@ def profilep(request):
             return redirect('/authed/profile/')
     else:
         return redirect('/')
+
+
+def subjectsp(request):
+    if request.user.is_authenticated:
+        if request.method == 'GET':
+            is_first = bool(UserMeta.objects.filter(user=request.user))
+            parms = {'username': request.user.username, 'user': request.user.first_name, 'is_first': is_first}
+            return render(request, 'subjects.html', parms)
+    else:
+        return redirect('/')
+
+
+def subjfirstsetp(request):
+    pass

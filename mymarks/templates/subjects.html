@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Предметы | {{ user }}{% endblock %}
+
+{% block nav %}
+<ul class="navbar-nav mr-auto">
+  <li class="nav-item">
+    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Вы вошли, как {{ user }} ({{ username }})</a>
+  </li>
+</ul>
+<a class="btn btn-outline-success my-2 my-sm-0" href="/logout">Выйти</a>
+{% endblock %}
+
+{% block body %}
+<h1>Настройка предметов</h1>
+<p></p>
+{% if is_first %}
+<p>Вы не настраивали предметы</p>
+<a href="firstset/"><button type="button" class="btn btn-primary btn-lg btn-block">Первичная Настройка</button></a>
+
+{% else %}
+
+{% endif %}
+<p></p>
+<a href="/authed/profile/">
+  < назад</a> {% endblock %}
